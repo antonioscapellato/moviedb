@@ -45,6 +45,29 @@ function App() {
 
       console.log(response.data);
       
+      SetResultDB(response.data.results);
+
+    }).catch(function (error) {
+      console.error(error);
+    });
+  }, [country, platform, type, genre])
+
+useEffect(() => {
+    axios.request(options).then(function (response) {
+
+      console.log(response.data);
+      SetResultDB(response.data.results)
+
+    }).catch(function (error) {
+      console.error(error);
+    });
+  }, [])
+
+  useEffect(() => {
+    axios.request(options).then(function (response) {
+
+      console.log(response.data);
+      
       SetResultDB(prevResultDB => {
         return [...new Set([...prevResultDB, ...response.data.results])]
       });
@@ -52,7 +75,7 @@ function App() {
     }).catch(function (error) {
       console.error(error);
     });
-  }, [country, platform, type, genre, page])
+  }, [page])
 
   return (
     <div>
